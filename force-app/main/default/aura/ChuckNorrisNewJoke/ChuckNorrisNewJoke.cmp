@@ -1,0 +1,11 @@
+<aura:component controller="GetNewChuckNorrisJoke" implements="flexipage:availableForAllPageTypes" access="global">
+    <aura:attribute type="string" name="jokecontent" />
+    
+    <div class="slds-box slds-theme_default">
+        
+        <lightning:button variant="destructive" label="Get New Chuck Norris Joke" title="Destructive action" onclick="{! c.handleClick }"/>
+        
+         {!v.jokecontent}
+    </div>
+    
+</aura:component>

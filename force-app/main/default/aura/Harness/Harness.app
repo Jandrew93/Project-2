@@ -1,9 +1,9 @@
 <aura:application >
 	<div>
-    <c:ChuckNorrisJokeFooter />
+    <c:ForexDisplay />
     </div>
     <div>
-        <c:ChuckNorrisNewJoke />
+        
     </div>
  
     

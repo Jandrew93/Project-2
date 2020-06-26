@@ -1,4 +1,5 @@
 public class getForexData {
+    
 	@auraenabled
    public static void getexchanges()
     {
@@ -23,11 +24,27 @@ public class getForexData {
             
             
         }//end if 
+        if(response.getStatusCode() != 200)
+        {
+            //handle errors 
+            system.debug( response.getBody());
+            
+            string body = response.getBody();
+           
+            body = body.replace('date', 'getdate');
+              
+            system.debug(body);
+         
+            JSON2forexerror js2fxer = JSON2forexerror.parse(body);
+            
+            system.debug(js2fxer.Error.info);
+            
+        }
         
     }//end get exchanges
      
      
-    
+    @auraenabled
      public static JSON2forex getjs2fxobject()
     {
         Http http = new Http();
@@ -51,17 +68,41 @@ public class getForexData {
              js2fx = JSON2forex.parse(body);
             
            
-        }//end if 
+        }
+        if(response.getStatusCode() != 200)
+        {
+            //handle errors 
+            system.debug( response.getBody());
+            
+            string body = response.getBody();
+           
+            body = body.replace('date', 'getdate');
+              
+            system.debug(body);
+         
+            JSON2forexerror js2fxer = JSON2forexerror.parse(body);
+            
+            system.debug(js2fxer.Error.info);
+            
+        }
          return js2fx;
     }//end getjs2forex
    
+    
+    
      
      @auraenabled
      public static void convertToDBobject(Json2forex js2fx)
     {
         Base_Currency__c bs = new Base_Currency__c();
+        system.debug(js2fx.getdate);
         
-        insert bs;
+        bs.Name = js2fx.base +  '  ' + js2fx.getdate;
+        bs.retrieve_time__c = datetime.now();
+        
+        
+       insert bs;
+        
         list<Conversion_factor__c> convlist = new   list<Conversion_factor__c>{};
        	
       
@@ -98,6 +139,7 @@ public class getForexData {
         	temp.Conversion_Rate__c = js2fx.rates.CAD;
             convlist.add(temp);
     	}
+        
         if(js2fx.rates.CHF!=0)
         {
             Conversion_Factor__c temp = new Conversion_factor__c();

@@ -545,7 +545,7 @@ public class JSON2forex {
 						timestamp = parser.getIntegerValue();
 					} else if (text == 'base') {
 						base = parser.getText();
-					} else if (text == 'date') {
+					} else if (text == 'getdate') {
 						getdate = parser.getText();
 					} else if (text == 'rates') {
 						rates = new Rates(parser);

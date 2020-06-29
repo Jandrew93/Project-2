@@ -1,0 +1,15 @@
+<aura:component controller="fetchforexDetails" implements="flexipage:availableForAllPageTypes" access="global" >
+
+    <aura:attribute name="forexlist" type="Base_Currency__c[]" />
+
+                <aura:handler name="init" value="{!this}" action="{!c.doInit}" />   
+
+     <aura:iteration items="{!v.forexList}" var="item">
+
+         
+
+
+
+    </aura:iteration>
+
+</aura:component>

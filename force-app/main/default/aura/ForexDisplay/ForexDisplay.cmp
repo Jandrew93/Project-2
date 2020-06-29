@@ -1,13 +1,14 @@
-<aura:component controller="getForexData" implements="flexipage:availableForAllPageTypes" access="global">
+<aura:component controller="getForexData" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
     <aura:attribute type="string" name="search-recordid"/> 
     
     <div class="slds-box slds-theme_default">
         <div>
         Retrieve Latest Currency Exchange Rates With Euro as Base<p/>
         </div> 
-        <lightning:button label="Get Exchange Rates!" title="LETS DO IT" onclick="{!c.handleClick}" class="slds-m-left_x-small"/>
+        <lightning:button label="Get Latest Exchange Rates!" title="LETS DO IT" onclick="{!c.handleClick}" class="slds-m-left_x-small"/>
         
     </div>
+    	
             
           
 </aura:component>

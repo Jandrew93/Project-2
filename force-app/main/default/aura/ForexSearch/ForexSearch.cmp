@@ -1,0 +1,11 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global" >
+	<aura:attribute name="baselist" type="String[]" />
+    
+    <div class="slds-box slds-theme_default">
+        
+        
+        
+
+        
+</div>
+</aura:component>

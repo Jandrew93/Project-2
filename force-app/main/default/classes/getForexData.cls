@@ -1,52 +1,12 @@
 public class getForexData {
     
-	@auraenabled
-   public static void getexchanges()
-    {
-        Http http = new Http();
-		HttpRequest request = new HttpRequest();
-		request.setEndpoint('http://data.fixer.io/api/latest?access_key=b24bee4c196c261a31ac318c4cca52e1');
-		request.setMethod('GET');
-		HttpResponse response = http.send(request);
-        system.debug(response.getStatusCode());
-        if (response.getStatusCode() == 200) {
-        //system.debug(response.getBody());
-        
-           system.debug( response.getBody());
-            
-            string body = response.getBody();
-            //one of the fields in the JSON response is called date, which is a reserved keyword in apex. replace it with getdate, and my parser will then work. 
-            body = body.replace('date', 'getdate');
-              
-            system.debug(body);
-            
-            JSON2forex js2fx = JSON2forex.parse(body);
-            
-            
-        }//end if 
-        if(response.getStatusCode() != 200)
-        {
-            //handle errors 
-            system.debug( response.getBody());
-            
-            string body = response.getBody();
-           
-            body = body.replace('date', 'getdate');
-              
-            system.debug(body);
-         
-            JSON2forexerror js2fxer = JSON2forexerror.parse(body);
-            
-            system.debug(js2fxer.Error.info);
-            
-        }
-        
-    }//end get exchanges
+	
      
      
     @auraenabled
      public static JSON2forex getjs2fxobject()
     {
+        system.debug('hello from the server side');
         Http http = new Http();
 		HttpRequest request = new HttpRequest();
 		request.setEndpoint('http://data.fixer.io/api/latest?access_key=b24bee4c196c261a31ac318c4cca52e1');
@@ -82,7 +42,7 @@ public class getForexData {
          
             JSON2forexerror js2fxer = JSON2forexerror.parse(body);
             
-            system.debug(js2fxer.Error.info);
+            //system.debug(js2fxer.Error.info);
             
         }
          return js2fx;
@@ -92,8 +52,10 @@ public class getForexData {
     
      
      @auraenabled
-     public static void convertToDBobject(Json2forex js2fx)
+     public static string convertToDBobject()
     {
+        Json2forex js2fx = getjs2fxobject();
+        
         Base_Currency__c bs = new Base_Currency__c();
         system.debug(js2fx.getdate);
         
@@ -159,8 +121,8 @@ public class getForexData {
         
         insert convlist;
         
-        
-    }
+        return bs.Id;
+    }//end of convert to db object
     
     
     

@@ -1,9 +1,7 @@
-<aura:application >
-	<div>
-    <c:ForexDisplay />
-    </div>
+<aura:application  extends="force:slds">
+	
     <div>
-        
+        <c:ForexCalculator />   
     </div>
  
     
